@@ -1,0 +1,17 @@
+version: '3'
+services:
+  namelist-service:
+    image: namelist-service
+  
+  namelist-client:
+    image: namelist-client
+
+  namelist-nginx:
+    image: namelist-nginx
+    ports: 
+      - 80:80
+    links:
+      - namelist-service
+      - namelist-client
+
+

@@ -1,4 +1,4 @@
-FROM nginx:perl AS base
+FROM nginx AS base
 WORKDIR /app
 EXPOSE 80
 

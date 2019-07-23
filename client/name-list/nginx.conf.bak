@@ -1,8 +1,13 @@
+load_module "modules/ngx_http_perl_module.so";
+env API_URI;
+
 events {
     worker_connections 1024;
 }
 
 http {
+
+    perl_set $api_uri 'sub { return $ENV{"API_URI"}; }';
 
     server {
       listen        80;
@@ -16,11 +21,10 @@ http {
       }
 
       location ~ ^/name-service/(.*)$ {
-        proxy_pass http://namelist-service/$1$is_args$args;
+        rewrite ^ $request_uri;
+        rewrite ^/name-service/(.*)$ $1 break;
+        return 400;
+        proxy_pass http://$api_uri/$1;
       }
-    }
-
-    upstream namelist-service {
-        server namelist-service:5000;
     }
 }
