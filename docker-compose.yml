@@ -1,0 +1,17 @@
+version: '3'
+services:
+  namelist-service:
+    image: daxnet/namelist-service
+  
+  namelist-client:
+    image: daxnet/namelist-client
+
+  namelist-nginx:
+    image: daxnet/namelist-nginx
+    ports: 
+      - 8899:80
+    links:
+      - namelist-service
+      - namelist-client
+
+

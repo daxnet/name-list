@@ -13,6 +13,6 @@ namespace NameList.Service.Controllers
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
-            => new string[] { "Brian", "Frank", "Sunny", "Chris" };
+            => new string[] { "Brian", "Frank", "Sunny", "Chris", Environment.MachineName };
     }
 }
