@@ -9,7 +9,7 @@ services:
   namelist-nginx:
     image: daxnet/namelist-nginx
     ports: 
-      - 80:80
+      - 8899:80
     links:
       - namelist-service
       - namelist-client
