@@ -6,12 +6,12 @@ metadata:
     kompose.version: 1.18.0 (06a2e56)
   creationTimestamp: null
   labels:
-    io.kompose.service: namelist-service
-  name: namelist-service
+    io.kompose.service: {{ .Release.Name }}-namelist-service
+  name: {{ .Release.Name }}-namelist-service
 spec:
   ports:
   - name: "5000"
     port: 5000
     targetPort: 5000
   selector:
-    io.kompose.service: namelist-service
+    io.kompose.service: {{ .Release.Name }}-namelist-service

@@ -6,8 +6,8 @@ metadata:
     kompose.version: 1.18.0 (06a2e56)
   creationTimestamp: null
   labels:
-    io.kompose.service: namelist-service
-  name: namelist-service
+    io.kompose.service: {{ .Release.Name }}-namelist-service
+  name: {{ .Release.Name }}-namelist-service
 spec:
   replicas: 1
   strategy: {}
@@ -15,7 +15,7 @@ spec:
     metadata:
       creationTimestamp: null
       labels:
-        io.kompose.service: namelist-service
+        io.kompose.service: {{ .Release.Name }}-namelist-service
     spec:
       containers:
       - image: daxnet/namelist-service

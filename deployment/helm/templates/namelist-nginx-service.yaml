@@ -6,14 +6,14 @@ metadata:
     kompose.version: 1.18.0 (06a2e56)
   creationTimestamp: null
   labels:
-    io.kompose.service: namelist-nginx
-  name: namelist-nginx
+    io.kompose.service: {{ .Release.Name }}-namelist-nginx
+  name: {{ .Release.Name }}-namelist-nginx
 spec:
   ports:
   - name: "8899"
     port: 8899
     targetPort: 80
   selector:
-    io.kompose.service: namelist-nginx
+    io.kompose.service: {{ .Release.Name }}-namelist-nginx
 status:
   loadBalancer: {}

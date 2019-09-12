@@ -1,0 +1,25 @@
+server {
+  listen        80;
+  server_name   localhost;
+
+  include  /etc/nginx/mime.types;
+
+  location / {
+    proxy_pass http://namelistcli/;
+  }
+
+  location ~ ^/name-service/(.*)$ {
+    rewrite ^ $request_uri;
+    rewrite ^/name-service/(.*)$ $1 break;
+    return 400;
+    proxy_pass http://namelistsvc/$1;
+  }
+}
+
+upstream namelistsvc {
+  server {{ .Env.RELEASE_NAME }}-namelist-service:5000;
+}
+
+upstream namelistcli {
+  server {{ .Env.RELEASE_NAME }}-namelist-client:80;
+}

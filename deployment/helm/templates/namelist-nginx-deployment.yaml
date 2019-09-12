@@ -6,8 +6,8 @@ metadata:
     kompose.version: 1.18.0 (06a2e56)
   creationTimestamp: null
   labels:
-    io.kompose.service: namelist-nginx
-  name: namelist-nginx
+    io.kompose.service: {{ .Release.Name }}-namelist-nginx
+  name: {{ .Release.Name }}-namelist-nginx
 spec:
   replicas: 1
   strategy: {}
@@ -15,11 +15,14 @@ spec:
     metadata:
       creationTimestamp: null
       labels:
-        io.kompose.service: namelist-nginx
+        io.kompose.service: {{ .Release.Name }}-namelist-nginx
     spec:
       containers:
       - image: daxnet/namelist-nginx
         name: namelist-nginx
+        env:
+        - name: RELEASE_NAME
+          value: {{ .Release.Name | quote }}
         ports:
         - containerPort: 80
         resources: {}

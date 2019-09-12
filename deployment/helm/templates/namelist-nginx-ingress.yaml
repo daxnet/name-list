@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: namelist-nginx-ingress
+  name: {{ .Release.Name }}-namelist-nginx-ingress
   annotations:
     kubernetes.io/ingress.class: "nginx"
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
@@ -10,5 +10,5 @@ spec:
   - http:
       paths:
       - backend:
-          serviceName: namelist-nginx
+          serviceName: {{ .Release.Name }}-namelist-nginx
           servicePort: 8899
